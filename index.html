@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="サイトの説明文" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>ポートフォリオ</title>
+
+    <link rel="icon" href="アイコン" />
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <link rel="stylesheet" href="./assets/css/stylesheet.css" />
+  </head>
+
+  <body>
+    <div class="container-img">
+      <div class="container-fimg">
+        <div class="fimg1" id="fimg1"></div>
+        <div class="fimg2" id="fimg2"></div>
+        <div class="fimg3" id="fimg3"></div>
+        <div class="fimg4" id="fimg4"></div>
+        <div class="fimg5" id="fimg5"></div>
+        <div class="fimg6" id="fimg6"></div>
+        <div class="fimg7" id="fimg7"></div>
+      </div>
+      <div class="camera-img">
+        <img src="./assets/images/55.png" alt="" class="camera-img5" id="camera-img5" />
+        <img src="./assets/images/44.png" alt="" class="camera-img4" id="camera-img4" />
+        <img src="./assets/images/33.png" alt="" class="camera-img3" id="camera-img3" />
+        <img src="./assets/images/22.png" alt="" class="camera-img2" id="camera-img2" />
+        <img src="./assets/images/11.png" alt="" class="camera-img1" id="camera-img1" />
+      </div>
+    </div>
+    <div class="wrapper-img">
+      <img src="./assets/images/自然公園04.png" alt="img" id="range-2" class="img2" />
+      <img src="./assets/images/white stork bird flying clipart.png" alt="img" id="range-main" class="img-main" />
+    </div>
+    <!-- thumbを動かすと焦点距離が表示、変更される -->
+    <p>焦点距離：<span id="range-1"></span></p>
+    <input type="range" min="1" max="57" value="1" id="range-11" />
+    <!-- ・thumbを動かすとF値が表示、変更される -->
+    <p>F値：<span id="range-3"></span></p>
+    <input type="range" list="my-datalist" min="1.4" max="32" id="range-33" value="32" step="any" />
+    <datalist id="my-datalist">
+      <option value="1.4"></option>
+      <option value="2"></option>
+      <option value="2.8"></option>
+      <option value="4"></option>
+      <option value="5.6"></option>
+      <option value="8"></option>
+      <option value="11"></option>
+      <option value="16"></option>
+      <option value="22"></option>
+      <option value="32"></option>
+    </datalist>
+
+    <script src="./assets/js/app.js"></script>
+  </body>
+</html>
