@@ -22,7 +22,6 @@ interface LensProduct {
   mount: string;
   imageUrl: string;
   caption: string;
-  affiliateUrl: string;
 }
 
 const dummyLenses: LensProduct[] = [
@@ -35,7 +34,6 @@ const dummyLenses: LensProduct[] = [
     mount: 'Sony E',
     imageUrl: 'https://example.com/sony50.jpg',
     caption: '軽量で明るい標準単焦点レンズ。',
-    affiliateUrl: 'https://example.com/sony50?scid=af_pc_etc',
   },
   {
     name: 'Canon RF 24-70mm F2.8',
@@ -46,7 +44,6 @@ const dummyLenses: LensProduct[] = [
     mount: 'Canon RF',
     imageUrl: 'https://example.com/canon2470.jpg',
     caption: 'プロ向け高画質ズームレンズ。',
-    affiliateUrl: 'https://example.com/canon2470?scid=af_pc_etc',
   },
   {
     name: 'Nikon 35mm F1.4',
@@ -57,7 +54,6 @@ const dummyLenses: LensProduct[] = [
     mount: 'Nikon Z',
     imageUrl: 'https://example.com/nikon35.jpg',
     caption: '明るく高解像の単焦点レンズ。',
-    affiliateUrl: 'https://example.com/nikon35?scid=af_pc_etc',
   },
   {
     name: 'Tamron 28-75mm F2.8',
@@ -68,7 +64,6 @@ const dummyLenses: LensProduct[] = [
     mount: 'Sony E',
     imageUrl: 'https://example.com/tamron2875.jpg',
     caption: 'コスパに優れた標準ズーム。',
-    affiliateUrl: 'https://example.com/tamron2875?scid=af_pc_etc',
   },
 ];
 
@@ -210,11 +205,6 @@ const Mypage: React.FC = () => {
           <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
             {filteredLenses.map((lens, index) => (
               <li key={index} className="border p-3 rounded shadow">
-                <img
-                  src={lens.imageUrl}
-                  alt={lens.name}
-                  className="w-full h-40 object-cover mb-2"
-                />
                 <p className="font-semibold">{lens.name}</p>
                 <p>
                   焦点距離: {lens.focalLength}mm / F値: {lens.aperture}

@@ -9,7 +9,6 @@ interface LensProduct {
   mount: string;
   imageUrl: string;
   caption: string;
-  affiliateUrl: string;
 }
 
 interface ProductModalProps {
@@ -19,6 +18,10 @@ interface ProductModalProps {
 
 const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
   if (!product) return null;
+
+  const searchUrl = `https://www.google.com/search?q=${encodeURIComponent(
+    product.name + ' レンズ'
+  )}`;
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
@@ -49,20 +52,18 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
 
         <div className="mt-6 flex justify-end space-x-3">
           <a
-            href={product.affiliateUrl}
+            href={searchUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
-          >
-            商品ページへ
-          </a>
-          <button
-            onClick={() => {
-              alert('購入候補に追加しました（仮）');
-            }}
             className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
           >
-            購入候補に追加
+            Webで検索
+          </a>
+          <button
+            onClick={onClose}
+            className="bg-gray-400 text-white px-4 py-2 rounded hover:bg-gray-500"
+          >
+            閉じる
           </button>
         </div>
       </div>

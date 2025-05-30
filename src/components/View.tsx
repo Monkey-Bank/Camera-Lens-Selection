@@ -54,7 +54,13 @@ const View: React.FC = () => {
 
   return (
     <div>
-      <p>額縁か、カメラの液晶にはめ込む</p>
+      <p>画像を額縁か、カメラの液晶にはめ込む</p>
+      <p>16-200mmまでズームできるようにする</p>
+      <p>背景画像を綺麗な奴にする</p>
+      <p>
+        レンズのダミーデータを別のコンポーネントで管理する。ミラーレスレンズ。SONY,canon,nikon,TAMRON,Fujifilm,SIGMA
+        F値は1.2から。焦点距離は16-200mmまで
+      </p>
       <div className="w-[750px] h-[500px] relative overflow-hidden">
         <img
           ref={backgroundRef}
