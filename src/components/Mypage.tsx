@@ -3,7 +3,7 @@ import { collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from './Firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import ProductModal from './ProductModal';
-import { dummyLenses } from './LensData';
+import { dummyLenses, type LensProduct } from './LensData';
 
 interface Favorite {
   id: string;
@@ -58,7 +58,7 @@ const Mypage: React.FC = () => {
   });
 
   return (
-    <div className="p-4 md:w-6xl mx-auto my-5 bg-[#F5ECD5] min-h-screen text-[#626F47]">
+    <div className="p-4 w-full md:max-w-6xl mx-auto my-5 bg-[#F5ECD5] min-h-screen text-[#626F47]">
       <h2 className="text-2xl font-bold mb-6">📸 マイページ</h2>
 
       {/* お気に入り一覧 */}
@@ -71,7 +71,7 @@ const Mypage: React.FC = () => {
             {favorites.map((fav) => (
               <li
                 key={fav.id}
-                className="w-2xl border border-[#A4B465] bg-white p-3 rounded shadow flex justify-between items-center"
+                className="w-full md:w-[48rem] border border-[#A4B465] bg-white p-3 rounded shadow flex justify-between items-center"
               >
                 <div>
                   焦点距離: {fav.focalLength}mm / F値: {fav.aperture}
@@ -91,7 +91,7 @@ const Mypage: React.FC = () => {
       {/* 検索フォーム */}
       <section className="mb-10">
         <h3 className="text-xl font-semibold mb-3">🔍 レンズ検索</h3>
-        <div className="grid grid-cols-2 gap-4 max-w-md">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-md">
           <div>
             <label className="block text-sm font-medium mb-1">
               焦点距離 (mm)

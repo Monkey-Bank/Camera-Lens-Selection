@@ -24,8 +24,8 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
   )}`;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
-      <div className="bg-[#fdfaf7] p-6 rounded-2xl shadow-xl max-w-md w-full relative border-2 border-[#5e3e2e]">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm px-2">
+      <div className="bg-[#fdfaf7] p-4 md:p-6 rounded-2xl shadow-xl w-full max-w-sm md:max-w-md relative border-2 border-[#5e3e2e]">
         <button
           onClick={onClose}
           className="absolute top-2 right-3 text-[#5e3e2e] hover:text-[#3a2a1f] text-xl font-bold"
@@ -36,7 +36,7 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
         <img
           src={product.imageUrl}
           alt={product.name}
-          className="w-full h-48 object-cover mb-4 rounded"
+          className="w-full h-40 md:h-48 object-cover mb-4 rounded"
         />
 
         <h2 className="text-2xl font-bold mb-2 text-[#3a2a1f]">
@@ -52,12 +52,12 @@ const ProductModal: React.FC<ProductModalProps> = ({ product, onClose }) => {
           <li>🪝 マウント: {product.mount}</li>
         </ul>
 
-        <div className="mt-6 flex justify-end space-x-3">
+        <div className="mt-6 flex flex-col md:flex-row justify-end space-y-2 md:space-y-0 md:space-x-3">
           <a
             href={searchUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="bg-[#4b2e1d] text-white px-4 py-2 rounded hover:bg-[#3a2a1f]"
+            className="bg-[#4b2e1d] text-white px-4 py-2 rounded hover:bg-[#3a2a1f] text-center"
           >
             Webで検索
           </a>
