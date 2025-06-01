@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
-import park from '../images/park.png';
+import park from '../images/park.jpg';
 import bird from '../images/bird.png';
 import SetFavorite from './SetFavorite';
 
@@ -22,13 +22,12 @@ const calculateBlur = (focalLength: number, aperture: number): number => {
 };
 
 const View: React.FC = () => {
-  const [focalLength, setFocalLength] = useState<number>(1);
+  const [focalLength, setFocalLength] = useState<number>(16);
   const [aperture, setAperture] = useState<number>(32);
 
   const backgroundRef = useRef<HTMLImageElement>(null);
   const birdRef = useRef<HTMLImageElement>(null);
 
-  // アニメーションフレームでスタイル更新
   useEffect(() => {
     let animationFrameId: number;
 
@@ -48,65 +47,71 @@ const View: React.FC = () => {
     };
 
     animationFrameId = requestAnimationFrame(updateStyle);
-
     return () => cancelAnimationFrame(animationFrameId);
   }, [focalLength, aperture]);
 
   return (
-    <div>
-      <p>画像を額縁か、カメラの液晶にはめ込む</p>
-      <p>16-200mmまでズームできるようにする</p>
-      <p>背景画像を綺麗な奴にする</p>
-      <p>
-        レンズのダミーデータを別のコンポーネントで管理する。ミラーレスレンズ。SONY,canon,nikon,TAMRON,Fujifilm,SIGMA
-        F値は1.2から。焦点距離は16-200mmまで
-      </p>
-      <div className="w-[750px] h-[500px] relative overflow-hidden">
-        <img
-          ref={backgroundRef}
-          src={park}
-          alt="背景画像"
-          className="absolute top-1/2 left-1/2 w-full h-full object-cover"
-          style={{
-            transform: 'translate(-50%, -50%) scale(1)',
-            filter: 'blur(0px)',
-            transition: 'transform 0.3s ease, filter 0.3s ease',
-          }}
-        />
-        <img
-          ref={birdRef}
-          src={bird}
-          alt="メイン画像"
-          className="absolute top-1/2 left-1/2 object-cover w-[30%]"
-          style={{
-            transform: 'translate(-50%, -50%) scale(1)',
-            transition: 'transform 0.3s ease',
-          }}
-        />
+    <div className="flex flex-col items-center gap-6 p-6 min-h-screen text-[#626F47]">
+      {/* 額縁風ボックス（そのまま） */}
+      <div className="relative w-[1400px] h-[700px] bg-[#2b1a0f] p-[24px] border-[20px] border-[#4b2e1d] rounded-[6px] shadow-[inset_0_0_0_4px_#5c3b27,inset_0_0_0_8px_#3d2416,inset_0_0_20px_rgba(0,0,0,0.5),4px_4px_12px_rgba(0,0,0,0.6)]">
+        <div className="relative w-full h-full bg-[#3a2a1f] rounded-[4px] border-[8px] border-[#5e3e2e] shadow-inner overflow-hidden">
+          {/* 背景画像 */}
+          <img
+            ref={backgroundRef}
+            src={park}
+            alt="背景画像"
+            className="absolute top-1/2 left-1/2 w-full h-full object-cover transition-all"
+            style={{
+              transform: 'translate(-50%, -50%) scale(1)',
+              filter: 'blur(0px)',
+            }}
+          />
+          {/* メイン画像 */}
+          <img
+            ref={birdRef}
+            src={bird}
+            alt="メイン画像"
+            className="absolute top-1/2 left-1/2 object-contain w-[10%] transition-transform"
+            style={{
+              transform: 'translate(-50%, -50%) scale(1)',
+            }}
+          />
+        </div>
       </div>
-      <p>
-        焦点距離：<span>{focalLength + 23}</span>
-      </p>
-      <input
-        type="range"
-        min="1"
-        max="57"
-        value={focalLength}
-        onChange={(e) => setFocalLength(Number(e.target.value))}
-        className="camera-slider"
-      />
-      <p>
-        F値：<span>{aperture}</span>
-      </p>
-      <input
-        type="range"
-        min={0}
-        max={apertureValues.length - 1}
-        value={apertureValues.indexOf(aperture)}
-        onChange={(e) => setAperture(apertureValues[Number(e.target.value)])}
-        className="camera-slider"
-      />
-      <SetFavorite focalLength={focalLength + 23} aperture={aperture} />
+
+      {/* スライダー類 */}
+      <div className="w-full max-w-4xl flex flex-col gap-4 px-4">
+        <label className="flex items-center justify-between">
+          <span className="font-semibold text-[#626F47]">
+            焦点距離: {focalLength}mm
+          </span>
+          <input
+            type="range"
+            min="16"
+            max="200"
+            value={focalLength}
+            onChange={(e) => setFocalLength(Number(e.target.value))}
+            className="camera-slider"
+          />
+        </label>
+
+        <label className="flex items-center justify-between">
+          <span className="font-semibold text-[#626F47]">F値: {aperture}</span>
+          <input
+            type="range"
+            min={0}
+            max={apertureValues.length - 1}
+            value={apertureValues.indexOf(aperture)}
+            onChange={(e) =>
+              setAperture(apertureValues[Number(e.target.value)])
+            }
+            className="camera-slider"
+          />
+        </label>
+      </div>
+
+      {/* お気に入り登録ボタン（SetFavorite内にボタンがある想定） */}
+      <SetFavorite focalLength={focalLength} aperture={aperture} />
     </div>
   );
 };

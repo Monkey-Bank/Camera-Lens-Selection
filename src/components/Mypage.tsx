@@ -3,6 +3,7 @@ import { collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore';
 import { auth, db } from './Firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import ProductModal from './ProductModal';
+import { dummyLenses } from './LensData';
 
 interface Favorite {
   id: string;
@@ -12,60 +13,6 @@ interface Favorite {
   price?: number;
   purpose?: string;
 }
-
-interface LensProduct {
-  name: string;
-  focalLength: number;
-  aperture: number;
-  price: number;
-  type: '単焦点' | 'ズーム';
-  mount: string;
-  imageUrl: string;
-  caption: string;
-}
-
-const dummyLenses: LensProduct[] = [
-  {
-    name: 'Sony 50mm F1.8',
-    focalLength: 50,
-    aperture: 1.8,
-    price: 30000,
-    type: '単焦点',
-    mount: 'Sony E',
-    imageUrl: 'https://example.com/sony50.jpg',
-    caption: '軽量で明るい標準単焦点レンズ。',
-  },
-  {
-    name: 'Canon RF 24-70mm F2.8',
-    focalLength: 24,
-    aperture: 2.8,
-    price: 150000,
-    type: 'ズーム',
-    mount: 'Canon RF',
-    imageUrl: 'https://example.com/canon2470.jpg',
-    caption: 'プロ向け高画質ズームレンズ。',
-  },
-  {
-    name: 'Nikon 35mm F1.4',
-    focalLength: 35,
-    aperture: 1.4,
-    price: 90000,
-    type: '単焦点',
-    mount: 'Nikon Z',
-    imageUrl: 'https://example.com/nikon35.jpg',
-    caption: '明るく高解像の単焦点レンズ。',
-  },
-  {
-    name: 'Tamron 28-75mm F2.8',
-    focalLength: 28,
-    aperture: 2.8,
-    price: 85000,
-    type: 'ズーム',
-    mount: 'Sony E',
-    imageUrl: 'https://example.com/tamron2875.jpg',
-    caption: 'コスパに優れた標準ズーム。',
-  },
-];
 
 const Mypage: React.FC = () => {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
@@ -111,7 +58,7 @@ const Mypage: React.FC = () => {
   });
 
   return (
-    <div className="p-4 max-w-3xl mx-auto">
+    <div className="p-4 md:w-6xl mx-auto my-5 bg-[#F5ECD5] min-h-screen text-[#626F47]">
       <h2 className="text-2xl font-bold mb-6">📸 マイページ</h2>
 
       {/* お気に入り一覧 */}
@@ -124,7 +71,7 @@ const Mypage: React.FC = () => {
             {favorites.map((fav) => (
               <li
                 key={fav.id}
-                className="border p-3 rounded shadow flex justify-between items-center"
+                className="w-2xl border border-[#A4B465] bg-white p-3 rounded shadow flex justify-between items-center"
               >
                 <div>
                   焦点距離: {fav.focalLength}mm / F値: {fav.aperture}
@@ -153,7 +100,7 @@ const Mypage: React.FC = () => {
               type="number"
               value={searchFocalLength}
               onChange={(e) => setSearchFocalLength(Number(e.target.value))}
-              className="w-full border rounded p-2"
+              className="w-full border border-[#A4B465] rounded p-2 bg-white"
             />
           </div>
           <div>
@@ -162,7 +109,7 @@ const Mypage: React.FC = () => {
               type="number"
               value={searchAperture}
               onChange={(e) => setSearchAperture(Number(e.target.value))}
-              className="w-full border rounded p-2"
+              className="w-full border border-[#A4B465] rounded p-2 bg-white"
             />
           </div>
           <div>
@@ -174,7 +121,7 @@ const Mypage: React.FC = () => {
               onChange={(e) =>
                 setLensType(e.target.value as '単焦点' | 'ズーム' | '')
               }
-              className="w-full border rounded p-2"
+              className="w-full border border-[#A4B465] rounded p-2 bg-white"
             >
               <option value="">すべて</option>
               <option value="単焦点">単焦点</option>
@@ -190,7 +137,7 @@ const Mypage: React.FC = () => {
               value={mount}
               onChange={(e) => setMount(e.target.value)}
               placeholder="例: Sony E, Canon RF"
-              className="w-full border rounded p-2"
+              className="w-full border border-[#A4B465] rounded p-2 bg-white"
             />
           </div>
         </div>
@@ -202,9 +149,12 @@ const Mypage: React.FC = () => {
         {filteredLenses.length === 0 ? (
           <p>条件に合うレンズが見つかりませんでした。</p>
         ) : (
-          <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <ul className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {filteredLenses.map((lens, index) => (
-              <li key={index} className="border p-3 rounded shadow">
+              <li
+                key={index}
+                className="border border-[#A4B465] bg-white p-3 rounded shadow"
+              >
                 <p className="font-semibold">{lens.name}</p>
                 <p>
                   焦点距離: {lens.focalLength}mm / F値: {lens.aperture}
@@ -215,7 +165,7 @@ const Mypage: React.FC = () => {
                 </p>
                 <button
                   onClick={() => setSelectedProduct(lens)}
-                  className="mt-2 text-blue-500 underline"
+                  className="mt-2 text-[#F0BB78] hover:underline font-medium"
                 >
                   詳細を見る
                 </button>
