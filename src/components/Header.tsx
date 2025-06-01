@@ -8,18 +8,21 @@ const Header = () => {
   const [user] = useAuthState(auth);
 
   return (
-    <div className="flex">
-      <div className="flex">
-        <h1>Camera Lens Selection</h1>
-        <nav>
+    <header className="flex items-center justify-around px-6 py-4 bg-[#F5ECD5] shadow-md">
+      {/* Left: Logo & Nav */}
+      <div className="flex items-center gap-6">
+        <h1 className="text-xl font-bold tracking-wide text-[#626F47]">
+          Camera Lens Selection
+        </h1>
+        <nav className="flex items-center gap-3">
           <Link to="/">
-            <button className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium text-neutral-600 transition-all duration-100 [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(82_82_82)]">
+            <button className="px-4 py-2 rounded-md bg-[#A4B465] text-[#F5ECD5] font-medium shadow-sm hover:bg-[#F0BB78] hover:text-[#626F47] transition duration-150">
               Home
             </button>
           </Link>
           {user ? (
             <Link to="/mypage">
-              <button className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium text-neutral-600 transition-all duration-100 [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(82_82_82)]">
+              <button className="px-4 py-2 rounded-md bg-[#A4B465] text-[#F5ECD5] font-medium shadow-sm hover:bg-[#F0BB78] hover:text-[#626F47] transition duration-150">
                 Mypage
               </button>
             </Link>
@@ -28,7 +31,9 @@ const Header = () => {
           )}
         </nav>
       </div>
-      <div className="flex">
+
+      {/* Right: User Info */}
+      <div className="flex items-center gap-4">
         {user ? (
           <>
             <AfterUserInfo />
@@ -41,7 +46,7 @@ const Header = () => {
           </>
         )}
       </div>
-    </div>
+    </header>
   );
 };
 
@@ -57,7 +62,7 @@ function SignInButton() {
   return (
     <button
       onClick={signInWithGoogle}
-      className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium text-neutral-600 transition-all duration-100 [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(82_82_82)]"
+      className="px-4 py-2 rounded-md bg-[#A4B465] text-[#F5ECD5] font-medium shadow-sm hover:bg-[#F0BB78] hover:text-[#626F47] transition duration-150"
     >
       Googleでログイン
     </button>
@@ -74,7 +79,7 @@ function SignInClick() {
   return (
     <button
       onClick={signInWithGoogle}
-      className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium text-neutral-600 transition-all duration-100 [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(82_82_82)]"
+      className="px-4 py-2 rounded-md bg-[#A4B465] text-[#F5ECD5] font-medium shadow-sm hover:bg-[#F0BB78] hover:text-[#626F47] transition duration-150"
     >
       Mypage
     </button>
@@ -86,7 +91,7 @@ function SignOutButton() {
   return (
     <button
       onClick={() => auth.signOut()}
-      className="group relative inline-flex h-12 items-center justify-center overflow-hidden rounded-md border border-neutral-200 bg-transparent px-6 font-medium text-neutral-600 transition-all duration-100 [box-shadow:5px_5px_rgb(82_82_82)] active:translate-x-[3px] active:translate-y-[3px] active:[box-shadow:0px_0px_rgb(82_82_82)]"
+      className="px-4 py-2 rounded-md bg-[#A4B465] text-[#F5ECD5] font-medium shadow-sm hover:bg-[#F0BB78] hover:text-[#626F47] transition duration-150"
     >
       ログアウト
     </button>
