@@ -18,7 +18,7 @@ const calculateBlur = (focalLength: number, aperture: number): number => {
     22: 1,
     32: 0.5,
   };
-  return (apertureBlurMap[aperture] || 0.5) + focalLength / 70;
+  return (apertureBlurMap[aperture] || 0.5) + focalLength / 500;
 };
 
 const View: React.FC = () => {
@@ -51,10 +51,10 @@ const View: React.FC = () => {
   }, [focalLength, aperture]);
 
   return (
-    <div className="flex flex-col items-center gap-6 p-6 min-h-screen text-[#626F47]">
-      {/* 額縁風ボックス（そのまま） */}
-      <div className="relative w-[1400px] h-[700px] bg-[#2b1a0f] p-[24px] border-[20px] border-[#4b2e1d] rounded-[6px] shadow-[inset_0_0_0_4px_#5c3b27,inset_0_0_0_8px_#3d2416,inset_0_0_20px_rgba(0,0,0,0.5),4px_4px_12px_rgba(0,0,0,0.6)]">
-        <div className="relative w-full h-full bg-[#3a2a1f] rounded-[4px] border-[8px] border-[#5e3e2e] shadow-inner overflow-hidden">
+    <div className="flex flex-col items-center gap-6 px-2 py-4 md:p-6 min-h-screen text-[#626F47]">
+      {/* 額縁風ボックス（レスポンシブ対応） */}
+      <div className="relative w-full h-[300px] md:w-[1400px] md:h-[700px] bg-[#2b1a0f] p-[12px] md:p-[24px] border-[10px] md:border-[20px] border-[#4b2e1d] rounded-[6px] shadow-[inset_0_0_0_2px_#5c3b27,inset_0_0_0_4px_#3d2416,inset_0_0_10px_rgba(0,0,0,0.5),2px_2px_6px_rgba(0,0,0,0.6)] md:shadow-[inset_0_0_0_4px_#5c3b27,inset_0_0_0_8px_#3d2416,inset_0_0_20px_rgba(0,0,0,0.5),4px_4px_12px_rgba(0,0,0,0.6)]">
+        <div className="relative w-full h-full bg-[#3a2a1f] rounded-[4px] border-[4px] md:border-[8px] border-[#5e3e2e] shadow-inner overflow-hidden">
           {/* 背景画像 */}
           <img
             ref={backgroundRef}
@@ -71,7 +71,7 @@ const View: React.FC = () => {
             ref={birdRef}
             src={bird}
             alt="メイン画像"
-            className="absolute top-1/2 left-1/2 object-contain w-[10%] transition-transform"
+            className="absolute top-1/2 left-1/2 object-contain w-[20%] md:w-[10%] transition-transform"
             style={{
               transform: 'translate(-50%, -50%) scale(1)',
             }}
@@ -80,8 +80,8 @@ const View: React.FC = () => {
       </div>
 
       {/* スライダー類 */}
-      <div className="w-full max-w-4xl flex flex-col gap-4 px-4">
-        <label className="flex items-center justify-between">
+      <div className="w-full max-w-4xl flex flex-col gap-4 px-2 md:px-4">
+        <label className="flex flex-col md:flex-row md:items-center justify-between gap-2">
           <span className="font-semibold text-[#626F47]">
             焦点距離: {focalLength}mm
           </span>
@@ -95,7 +95,7 @@ const View: React.FC = () => {
           />
         </label>
 
-        <label className="flex items-center justify-between">
+        <label className="flex flex-col md:flex-row md:items-center justify-between gap-2">
           <span className="font-semibold text-[#626F47]">F値: {aperture}</span>
           <input
             type="range"
@@ -105,12 +105,12 @@ const View: React.FC = () => {
             onChange={(e) =>
               setAperture(apertureValues[Number(e.target.value)])
             }
-            className="camera-slider"
+            className="camera-slider w-full md:w-2/3"
           />
         </label>
       </div>
 
-      {/* お気に入り登録ボタン（SetFavorite内にボタンがある想定） */}
+      {/* お気に入り登録ボタン */}
       <SetFavorite focalLength={focalLength} aperture={aperture} />
     </div>
   );
