@@ -1,54 +1,53 @@
-# React + TypeScript + Vite
+# Camera Lens Selection 📷
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+視覚的に「F 値」と「焦点距離」の関係性が体感できるカメラシミュレーションアプリです。
 
-Currently, two official plugins are available:
+## 🧠 コンセプト
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+カメラ初心者にとって、**レンズ選びは非常に難しい問題**です。  
+本アプリは、**焦点距離（mm）と F 値の違いが被写界深度やズームにどう影響するか**を視覚的に理解できるように設計されています。
 
-## Expanding the ESLint configuration
+**カメラが好きな制作者自身が、初心者の頃に「こういうアプリが欲しかった！」と思って開発しました。**  
+カメラ・レンズ選びの参考になれば嬉しいです！
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config({
-  extends: [
-    // Remove ...tseslint.configs.recommended and replace with this
-    ...tseslint.configs.recommendedTypeChecked,
-    // Alternatively, use this for stricter rules
-    ...tseslint.configs.strictTypeChecked,
-    // Optionally, add this for stylistic rules
-    ...tseslint.configs.stylisticTypeChecked,
-  ],
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+## 🔧 使用技術・ライブラリ
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+- **React 19**
+- **Vite**
+- **TypeScript**
+- **Tailwind CSS 4**
+- **Firebase**
+  - Authentication
+  - Firestore
+- **React Router DOM v7**
+- **React Firebase Hooks**
+- **React Toastify**（通知用）
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+---
 
-export default tseslint.config({
-  plugins: {
-    // Add the react-x and react-dom plugins
-    'react-x': reactX,
-    'react-dom': reactDom,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended typescript rules
-    ...reactX.configs['recommended-typescript'].rules,
-    ...reactDom.configs.recommended.rules,
-  },
-})
-```
+## 🚀 機能概要
+
+| 機能                      | 説明                                                          |
+| ------------------------- | ------------------------------------------------------------- |
+| 📸 カメラシミュレーション | 焦点距離と F 値のスライダーで背景のボケと被写体の拡大率が変化 |
+| ⭐ お気に入り登録         | 気になる設定を Firebase に保存                                |
+| 🧑‍💻 ユーザー認証           | Firebase Authentication でログイン管理                        |
+| 🧾 マイページ             | お気に入り設定の一覧＆削除が可能                              |
+| 🔍 レンズ検索　　　　　   | 気になるレンズを選択して、Web で検索　　　　　　　　　　　　  |
+
+---
+
+## 📸 画面イメージ
+
+![preview1](./public/screenshot1.jpg)
+![preview2](./public/screenshot2.jpg)
+
+> ※画像は例。スクリーンショットを差し替えてください。
+
+---
+
+## 🔄 今後のアップデート
+
+・レンズ検索（開発中） | 条件に合う市販レンズを検索（楽天・Amazon API 対応予定）
