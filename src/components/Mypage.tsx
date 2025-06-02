@@ -17,8 +17,8 @@ interface Favorite {
 const Mypage: React.FC = () => {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [user] = useAuthState(auth);
-  const [searchFocalLength, setSearchFocalLength] = useState<number>(50);
-  const [searchAperture, setSearchAperture] = useState<number>(2.8);
+  const [searchFocalLength, setSearchFocalLength] = useState<string>('16');
+  const [searchAperture, setSearchAperture] = useState<string>('1.4');
   const [lensType, setLensType] = useState<'単焦点' | 'ズーム' | ''>('');
   const [mount, setMount] = useState<string>('');
   const [selectedProduct, setSelectedProduct] = useState<LensProduct | null>(
@@ -49,12 +49,15 @@ const Mypage: React.FC = () => {
   };
 
   const filteredLenses = dummyLenses.filter((lens) => {
-    return (
-      lens.focalLength >= searchFocalLength &&
-      lens.aperture <= searchAperture &&
-      (lensType === '' || lens.type === lensType) &&
-      (mount === '' || lens.mount.toLowerCase().includes(mount.toLowerCase()))
-    );
+    const focalOk =
+      searchFocalLength === '' || lens.focalLength >= Number(searchFocalLength);
+    const apertureOk =
+      searchAperture === '' || lens.aperture <= Number(searchAperture);
+    const typeOk = lensType === '' || lens.type === lensType;
+    const mountOk =
+      mount === '' || lens.mount.toLowerCase().includes(mount.toLowerCase());
+
+    return focalOk && apertureOk && typeOk && mountOk;
   });
 
   return (
@@ -99,7 +102,7 @@ const Mypage: React.FC = () => {
             <input
               type="number"
               value={searchFocalLength}
-              onChange={(e) => setSearchFocalLength(Number(e.target.value))}
+              onChange={(e) => setSearchFocalLength(e.target.value)}
               className="w-full border border-[#A4B465] rounded p-2 bg-white"
             />
           </div>
@@ -108,7 +111,7 @@ const Mypage: React.FC = () => {
             <input
               type="number"
               value={searchAperture}
-              onChange={(e) => setSearchAperture(Number(e.target.value))}
+              onChange={(e) => setSearchAperture(e.target.value)}
               className="w-full border border-[#A4B465] rounded p-2 bg-white"
             />
           </div>

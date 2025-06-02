@@ -1,8 +1,10 @@
-# 📷 Camera Lens Selection
+# ■ Camera Lens Selection
+
+![preview1](./public/lens.webp)
 
 視覚的に「F 値」と「焦点距離」の関係性が体感できるカメラシミュレーションアプリです。
 
-## 🧠 はじめに
+## ■ はじめに
 
 カメラ初心者にとって、**レンズ選びは非常に難しい問題**です。  
 本アプリは、**焦点距離（mm）と F 値の違いが被写界深度やズームにどう影響するか**を視覚的に理解できるように設計されています。
@@ -12,7 +14,7 @@
 
 ---
 
-## 🔧 使用技術・ライブラリ
+## ■ 使用技術・ライブラリ
 
 - **React 19**
 - **Vite**
@@ -20,14 +22,15 @@
 - **Tailwind CSS 4**
 - **Firebase**
   - Authentication
-  - Firestore
+  - Firestore Database
+  - Hosting
 - **React Router DOM v7**
 - **React Firebase Hooks**
 - **React Toastify**（通知用）
 
 ---
 
-## 🚀 機能概要
+## ■ 機能概要
 
 | 機能                      | 説明                                                          |
 | ------------------------- | ------------------------------------------------------------- |
@@ -39,16 +42,14 @@
 
 ---
 
-## 📸 画面イメージ
+## ■ 画面イメージ
 
-![preview1](./public/screenshot1.jpg)
-![preview2](./public/screenshot2.jpg)
-
-> ※画像は例。スクリーンショットを差し替えてください。
+![preview1](./public/screenshot1.png)
+![preview2](./public/screenshot2.png)
 
 ---
 
-## 🔄 今後のアップデート
+## ■ 今後のアップデート
 
 ・レンズ検索（開発中） | 条件に合う市販レンズを検索（楽天・Amazon API 対応予定）
 ・レンズソート機能
@@ -56,6 +57,6 @@
 
 ---
 
-## 🌏 リンク先
+## ■ リンク先
 
-[text](https://camera-lens-selection.web.app/)
+[Camera Lens Selection](https://camera-lens-selection.web.app/)
