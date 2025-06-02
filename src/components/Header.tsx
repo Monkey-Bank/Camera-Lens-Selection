@@ -2,6 +2,7 @@ import { signInWithPopup } from 'firebase/auth';
 import { auth, provider } from './Firebase';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Link } from 'react-router-dom';
+import GoogleIcon from '../images/google.svg';
 
 const Header = () => {
   const [user] = useAuthState(auth);
@@ -61,9 +62,10 @@ function SignInButton() {
   return (
     <button
       onClick={signInWithGoogle}
-      className="px-4 py-2 rounded-md bg-[#A4B465] text-[#F5ECD5] font-medium shadow-sm hover:bg-[#F0BB78] hover:text-[#626F47] transition duration-150"
+      className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-md bg-white text-black font-medium hover:bg-gray-100 transition duration-150"
     >
-      Googleでログイン
+      <img src={GoogleIcon} alt="Google" className="w-5 h-5" />
+      Sign in with Google
     </button>
   );
 }
